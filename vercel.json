@@ -1,0 +1,11 @@
+{
+  "routes": [
+    {
+      "src": "/api/users",
+      "headers": {
+        "cache-control": "no-store"
+      },
+      "dest": "/api/users"
+    }
+  ]
+}

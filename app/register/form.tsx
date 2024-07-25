@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
+import { signIn } from "next-auth/react";
 
 const FormSchema = z.object({
   email: z.string().email({
@@ -66,9 +67,12 @@ export default function FormPage() {
   };
 
   return (
-    <div className="w-2/3 space-y-6">
+    <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="text-white p-4 md:p-16 border-[1.5px] rounded-lg border-gray-300 flex flex-col items-center justify-center gap-y-6"
+        >
           <FormField
             control={form.control}
             name="email"
@@ -76,7 +80,11 @@ export default function FormPage() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter Email" {...field} />
+                  <Input
+                    placeholder="Enter Email"
+                    {...field}
+                    className="text-black min-w-full"
+                  />
                 </FormControl>
               </FormItem>
             )}
@@ -88,24 +96,41 @@ export default function FormPage() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="Password" {...field} type="password" />
+                  <Input
+                    placeholder="Password"
+                    {...field}
+                    type="password"
+                    className="text-black w-full "
+                  />
                 </FormControl>
               </FormItem>
             )}
           />
-          <div className="flex gap-7">
-            <Button type="submit" className="mt-10">
+          <div className="flex flex-col justify-center items-center gap-3 w-full">
+            <Button
+              type="submit"
+              className="hover:scale-110 mt-5 hover:bg-cyan-700 px-10  sm:w-[45%] w-[80%] "
+            >
               Submit
             </Button>
 
             <Link
               href="/login"
-              className="text-blue-500 hover:text-blue-700 cursor-pointer mt-12 "
+              className="hover:scale-110 hover:bg-gray-700 hover:text-white border text-center py-1 rounded-sm sm:w-[45%] w-[80%]  hover:border-none"
             >
               Login
             </Link>
           </div>
         </form>
+
+        <Link href='http://localhost:3000/api/signin'>
+          <Button
+            className="bg-blue-600 px-3 w-full text-white p-2 font-bold"
+            onClick={() => signIn}
+          >
+            GitHub Login
+          </Button>
+        </Link>
       </Form>
     </div>
   );

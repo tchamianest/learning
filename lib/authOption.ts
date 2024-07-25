@@ -5,6 +5,7 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { db } from "./db";
 import { usersdata } from "./schema";
+import GithubProvider from "next-auth/providers/github";
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -40,13 +41,13 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  callbacks: {
-    async jwt({ token, user }) {
-      return { ...token, ...user };
-    },
-    async session({ session, token, user }) {
-      session.user = token as any;
-      return session;
-    },
-  },
+  // callbacks: {
+  //   async jwt({ token, user }) {
+  //     return { ...token, ...user };
+  //   },
+  //   async session({ session, token, user }) {
+  //     session.user = token as any;
+  //     return session;
+  //   },
+  // },
 };

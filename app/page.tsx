@@ -22,7 +22,6 @@ const CreateUserForm = () => {
   const {
     name,
     nameupdate,
-    users,
     data,
     setName,
     setnameupdate,

@@ -1,8 +1,16 @@
 import "@/lib/config";
-import { drizzle } from "drizzle-orm/vercel-postgres";
-import { sql } from "@vercel/postgres";
+import { neon, neonConfig } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-http";
+// import { sql } from "@vercel/postgres";
+import { createClient } from "@vercel/postgres";
 import { users } from "./schema";
 import * as schema from "./schema";
+
+const sql = neon(process.env.POSTGRES_URL as string);
+// neonConfig.fetchConnectionCache = false;
+
+// console.log(process.env.POSTGRES_URL as string);
+
 export const db = drizzle(sql, { schema });
 
 export const getUsers = async () => {

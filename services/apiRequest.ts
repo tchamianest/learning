@@ -19,11 +19,7 @@ export async function PostData({ name }: data) {
 }
 
 export async function GetUser() {
-  const response = await axios.get("/api/users", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await axios.get("/api/users");
 
   // const response = await fetch("/api/users", {
   //   method: "GET",
