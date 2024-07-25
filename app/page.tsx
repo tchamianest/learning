@@ -15,6 +15,7 @@ import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { PopoverClose } from "@radix-ui/react-popover";
 import DarkMode from "@/components/DarkMode";
 
+
 const CreateUserForm = () => {
   const PopoverTrigger = PopoverPrimitive.Trigger;
   const router = useRouter();
@@ -22,7 +23,6 @@ const CreateUserForm = () => {
   const {
     name,
     nameupdate,
-    users,
     data,
     setName,
     setnameupdate,
@@ -82,6 +82,7 @@ const CreateUserForm = () => {
                 >
                   Create User
                 </Button>
+                
               </div>
             </div>
           </form>

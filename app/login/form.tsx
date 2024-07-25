@@ -59,7 +59,7 @@ export default function LoginForm() {
       }
 
       if (!response.ok) {
-        return notify("You don't have any account'/");
+        return notify("Invalid email or password");
       }
 
       console.log("Login Successful", response);
@@ -69,6 +69,21 @@ export default function LoginForm() {
       notify("Login Failed");
     }
   };
+  // const handleGithubSignIn = async () => {
+  //   try {
+  //     const response: any = await signIn("github", { redirect: false });
+  //     if (response?.error) {
+  //       notify("GitHub Login Failed");
+  //     } else {
+  //       router.push("/");
+  //       router.refresh();
+  //       notify("GitHub Login Successful");
+  //     }
+  //   } catch (error: any) {
+  //     console.error("GitHub Login Failed:", error);
+  //     notify("GitHub Login Failed");
+  //   }
+  // };
 
   return (
     <div>
@@ -76,7 +91,7 @@ export default function LoginForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="text-white p-4 md:p-16 border-[1.5px] rounded-lg border-gray-300 flex flex-col items-center justify-center gap-y-6"
+          className="text-white  md:p-16 border-[1.5px] rounded-lg border-gray-300 flex flex-col items-center justify-center gap-5"
         >
           <FormField
             control={form.control}
@@ -86,7 +101,7 @@ export default function LoginForm() {
                 <FormLabel>Provide Email</FormLabel>
                 <FormControl>
                   <Input
-                    className="text-black w-full"
+                    className="text-black min-w-full"
                     placeholder="Provide Email"
                     {...field}
                     type="text"
@@ -103,7 +118,7 @@ export default function LoginForm() {
                 <FormLabel>Provide Password</FormLabel>
                 <FormControl>
                   <Input
-                    className="text-black w-full"
+                    className="text-black w-full "
                     placeholder="password"
                     {...field}
                     type="password"
@@ -114,15 +129,24 @@ export default function LoginForm() {
           />
           <Button
             type="submit"
-            className="hover:scale-110 hover:bg-cyan-700 px-10"
+            className="hover:scale-110 mt-3 hover:bg-cyan-700 px-10  sm:w-[45%] w-[80%] "
             //   disabled={form.formState.isSubmitting}
           >
             Login
           </Button>
-          <Link href="/register" className="text-blue-500 hover:text-blue-900">
+          <Link
+            href="/register"
+            className="hover:scale-110 hover:bg-gray-700 hover:text-white border text-center py-1 rounded-sm sm:w-[45%] w-[80%]  hover:border-none"
+          >
             Register
           </Link>
         </form>
+        {/* <Button
+          className="bg-blue-600 px-3 w-full text-white p-2 font-bold"
+          onClick={() => handleGithubSignIn}
+        >
+          GitHub Login
+        </Button> */}
       </Form>
     </div>
   );

@@ -30,7 +30,6 @@ function HomePage() {
   const { data, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: fetchUser,
-    staleTime: Infinity,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {

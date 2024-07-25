@@ -10,13 +10,19 @@ export async function GET(req: NextRequest, res: NextResponse) {
         .select()
         .from(users)
         .orderBy(desc(users.createdAt));
-      return NextResponse.json({
-        data: result,
-      });
+      return NextResponse.json(
+        {
+          data: result,
+        },
+        { headers: { "Cache-Control": "no-store" } }
+      );
     } catch (error) {
-      return Response.json({ error });
+      return NextResponse.json(
+        { error: "Internal server Error" },
+        { status: 500 }
+      );
     }
   } else {
-    return Response.json({ error: "Method not allowed" });
+    return NextResponse.json({ error: "Method not allowed" });
   }
 }
