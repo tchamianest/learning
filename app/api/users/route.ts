@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "../../../lib/db";
 import { users } from "../../../lib/schema";
 import { desc } from "drizzle-orm/sql";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function GET(req: NextRequest, res: NextResponse) {
   if (req.method === "GET") {
@@ -10,6 +11,8 @@ export async function GET(req: NextRequest, res: NextResponse) {
         .select()
         .from(users)
         .orderBy(desc(users.createdAt));
+      const path = req.nextUrl.pathname;
+      revalidatePath(path);
       return NextResponse.json(
         {
           data: result,

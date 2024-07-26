@@ -1,4 +1,6 @@
 import axios from "axios";
+import next from "next";
+import { revalidatePath } from "next/cache";
 interface data {
   name: string;
 }
@@ -19,16 +21,22 @@ export async function PostData({ name }: data) {
 }
 
 export async function GetUser() {
-  const response = await axios.get("/api/users");
+  // const response = await axios.get("/api/users");
 
-  // const response = await fetch("/api/users", {
-  //   method: "GET",
-  //   cache: "no-store",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-  return response.data;
+  const response = await fetch(
+    "/api/users",
+
+    // {
+    //   method: "GET",
+    //   cache: "no-store",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // }
+    { next: { revalidate: 30 } }
+  );
+  console.log(response);
+  return response;
 }
 
 export async function DeleteFunction(id: string) {

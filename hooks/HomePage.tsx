@@ -25,13 +25,14 @@ function HomePage() {
 
   const fetchUser = async () => {
     const response = await GetUser();
-    return response;
+    const data = await response.json();
+    return data;
   };
   const { data, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: fetchUser,
   });
-
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
