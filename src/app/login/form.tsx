@@ -44,7 +44,11 @@ export default function LoginForm() {
     const { email, password } = data;
 
     try {
+<<<<<<< Updated upstream:src/app/login/form.tsx
       const response = await signIn('credentials', {
+=======
+      const response = await signIn("credentials", {
+>>>>>>> Stashed changes:app/login/form.tsx
         email,
         password,
         redirect: false,
@@ -55,8 +59,17 @@ export default function LoginForm() {
         router.refresh();
       }
 
+<<<<<<< Updated upstream:src/app/login/form.tsx
       if (!response?.ok) {
         return notify('Invalid email or password');
+=======
+<<<<<<< HEAD
+      if (!response.ok) {
+=======
+      if (!response?.ok) {
+>>>>>>> a3fb61e6db61aa2f64609a3d7f582ee1537122f9
+        return notify("Invalid email or password");
+>>>>>>> Stashed changes:app/login/form.tsx
       }
 
       notify('Login Successful');

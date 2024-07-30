@@ -44,6 +44,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+<<<<<<< Updated upstream:src/lib/authOption.ts
   callbacks: {
     async jwt({ token, user }) {
       return { ...token, ...user };
@@ -53,4 +54,15 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
+=======
+  // callbacks: {
+  //   async jwt({ token, user }) {
+  //     return { ...token, ...user };
+  //   },
+  //   async session({ session, token, user }) {
+  //     session.user = token as any;
+  //     return session;
+  //   },
+  // },
+>>>>>>> Stashed changes:lib/authOption.ts
 };

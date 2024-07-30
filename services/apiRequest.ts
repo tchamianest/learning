@@ -23,19 +23,6 @@ export async function PostData({ name }: data) {
 export async function GetUser() {
   const response = await axios.get('/api/users');
 
-  // const response = await fetch(
-  //   "/api/users",
-
-  //   // {
-  //   //   method: "GET",
-  //   //   cache: "no-store",
-  //   //   headers: {
-  //   //     "Content-Type": "application/json",
-  //   //   },
-  //   // }
-  //   { next: { revalidate: 30 } }
-  // );
-  console.log(response);
   return response;
 }
 
